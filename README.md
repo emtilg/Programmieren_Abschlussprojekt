@@ -1,2 +1,2 @@
-# P-_Abschlussprojekt
+# Programmieren_Abschlussprojekt
 This repository contains the files for the Final submission
