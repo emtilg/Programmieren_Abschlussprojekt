@@ -1,12 +1,8 @@
 [
     {
         "ID": 1,
-        "Vorname": "Marc",
-        "Nachname": "Wechselberger"
-    },
-    {
-        "ID": 2,
         "Vorname": "Emmanuel",
-        "Nachname": "Tilg"
+        "Nachname": "Tilg",
+        "Passwort": "sldkfsaf"
     }
 ]

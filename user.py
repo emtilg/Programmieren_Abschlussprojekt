@@ -3,7 +3,7 @@ import json
 
 class User:
     @staticmethod
-    def add_users_to_json(Vorname, Nachname):
+    def add_users_to_json(Vorname, Nachname, Passwort):
         file = "user_data.json"
 
         # load data
@@ -16,7 +16,7 @@ class User:
         else:
             id = users[-1]["ID"] + 1
 
-        new_user = {"ID": id, "Vorname": Vorname, "Nachname": Nachname}
+        new_user = {"ID": id, "Vorname": Vorname, "Nachname": Nachname, "Passwort": Passwort}
 
         # add user
         users.append(new_user)
