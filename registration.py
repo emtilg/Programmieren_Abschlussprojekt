@@ -1,5 +1,4 @@
 import streamlit as st
-import json
 
 from user import User
 
