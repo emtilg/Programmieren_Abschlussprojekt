@@ -1,4 +1,4 @@
-import streamlit as st
+'''import streamlit as st
 
 from user import User
 
@@ -22,3 +22,28 @@ if bestätigen and AGB and (len(Vorname) == 0 or len(Nachname) == 0 or len(Passw
     st.warning("##### Sie müssen alle Pflichtfelder ausfüllen")
 if bestätigen and not AGB:
     st.warning("##### Bestätigen Sie die AGB")
+'''
+
+import streamlit as st
+
+import registration
+import login
+
+if "page" not in st.session_state:
+    st.session_state.page = "main"
+
+
+st.sidebar.write("### Profil")
+login_button = st.sidebar.button("Login", type="primary")
+registrieren = st.sidebar.button("Registrieren", type="primary")
+
+if login_button:
+    st.session_state.page = "login"
+
+if registrieren:
+    st.session_state.page = "registrieren"
+
+if st.session_state.page == "login":
+    login.show_login()
+if st.session_state.page == "registrieren":
+    registration.show_registration()

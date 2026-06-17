@@ -25,5 +25,7 @@ class User:
         with open(file, "w") as f:
             json.dump(users, f, indent=4)
 
-    def __init__(self):
-        pass
+    def __init__(self, ID, Vorname, Nachname,):
+        self.ID = ID
+        self.Vorname = Vorname
+        self.Nachname = Nachname
