@@ -21,6 +21,9 @@ Aufgaben:
 
 Erledigt:
     - Registrierung und Daten in Json File speichern
+    - Login
+    - Startseite mit wenig Design
+    - Nach einloggen - andere Seite
 
 -----
 

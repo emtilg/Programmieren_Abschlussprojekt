@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "ID": 1,
+        "Vorname": "Emmanuel",
+        "Nachname": "Tilg",
+        "Passwort": "Programmieren"
+    },
+    {
+        "ID": 2,
+        "Vorname": "Marc",
+        "Nachname": "Wechselberger",
+        "Passwort": "hallo"
+    },
+    {
+        "ID": 3,
+        "Vorname": "Nicolas",
+        "Nachname": "Unterweger",
+        "Passwort": "nein"
+    },
+    {
+        "ID": 4,
+        "Vorname": "Dominika",
+        "Nachname": "Marth",
+        "Passwort": "123"
+    }
+]

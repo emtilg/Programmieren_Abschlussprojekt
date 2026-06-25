@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 from user import User
 
@@ -20,7 +21,12 @@ def show_registration():
     # Abfragen, dass der Rahmen festgelegt wird
     if bestätigen and AGB and len(Vorname) > 0 and len(Nachname) > 0 and len(Passwort) > 0:
         User.add_users_to_json(Vorname, Nachname, Passwort)
-        st.success("Registrierung erfolgreich")
+        st.success("##### Registrierung erfolgreich")
+
+        time.sleep(2)
+
+        st.session_state.page = "main"
+        st.rerun()
 
     if bestätigen and AGB and (len(Vorname) == 0 or len(Nachname) == 0 or len(Passwort) == 0):
         st.warning("##### Sie müssen alle Pflichtfelder ausfüllen")

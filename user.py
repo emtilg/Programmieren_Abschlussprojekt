@@ -1,4 +1,5 @@
 import json
+import streamlit as st
 
 
 class User:
@@ -6,11 +7,11 @@ class User:
     def add_users_to_json(Vorname, Nachname, Passwort):
         file = "user_data.json"
 
-        # load data
+        # läd datei
         with open(file, "r") as f:
             users = json.load(f)
 
-        # adds a unique ID to every entry
+        # fügt eine individuelle ID hinzu
         if len(users) == 0:
             id = 1
         else:
@@ -18,10 +19,10 @@ class User:
 
         new_user = {"ID": id, "Vorname": Vorname, "Nachname": Nachname, "Passwort": Passwort}
 
-        # add user
+        # fügt user hinzu
         users.append(new_user)
 
-        # safe user in Json
+        # speichert user im Json
         with open(file, "w") as f:
             json.dump(users, f, indent=4)
 
@@ -29,3 +30,6 @@ class User:
         self.ID = ID
         self.Vorname = Vorname
         self.Nachname = Nachname
+
+    def begrüßen(self):
+        st.title(f"Hallo {self.Vorname}")
