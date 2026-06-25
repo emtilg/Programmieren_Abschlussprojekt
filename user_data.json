@@ -16,11 +16,5 @@
         "Vorname": "Nicolas",
         "Nachname": "Unterweger",
         "Passwort": "nein"
-    },
-    {
-        "ID": 4,
-        "Vorname": "Dominika",
-        "Nachname": "Marth",
-        "Passwort": "123"
     }
 ]

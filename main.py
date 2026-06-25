@@ -1,29 +1,36 @@
 import streamlit as st
 import base64
+import streamlit_float
 
 import registration
 import login
 
 # CSS code zwischen den Balken, nur Design, kein funktionaler code
-#_________________________________________________________________________________________________
+# _________________________________________________________________________________________________
 
 # macht den Menübalken transparent
-st.markdown("""
+st.markdown(
+    """
 <style>
 [data-testid="stHeader"] {
     background: transparent;
 }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
+
 
 # fügt Hintergrundbild ein
 def get_base64(file_path):
     with open(file_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
+
 img = get_base64("images/Titelbild_6.png")
 
-st.markdown(f"""
+st.markdown(
+    f"""
 <style>
 [data-testid="stAppViewContainer"] {{
     background-image: url("data:image/png;base64,{img}");
@@ -40,9 +47,15 @@ st.markdown(f"""
     pointer-events: none;
 }}
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
-#______________________________________________________________________________________________
+# ______________________________________________________________________________________________
+
+st.set_page_config(layout="wide")
+
+main_page, right_side = st.columns([5, 1])
 
 # Initialisiert st.session_state.page mit "main", falls noch kein Page-State existiert
 if "page" not in st.session_state:
@@ -77,11 +90,16 @@ if st.session_state.page == "main" and not st.session_state.true_login:
     st.write("Noch kein Konto? Einfach Registrieren und loslegen")
 
 # die Startseite der User, hier sollte alles individuell angezeigt werden
-if st.session_state.page == "main" and st.session_state.true_login:
-    if "object_user" in st.session_state:
-        st.session_state.object_user.begrüßen()
-    st.image("images/Göfelesee.png")
-    
+with main_page:
+    if st.session_state.page == "main" and st.session_state.true_login:
+        if "object_user" in st.session_state:
+            st.session_state.object_user.begrüßen()
+        st.image("images/Göfelesee.png")
+with right_side:
+    if st.session_state.page == "main" and st.session_state.true_login:
+        stats = st.container()
 
-
-
+        with stats:
+            st.write("### Statistik")
+            st.write("Hier finden sie die Statistiken unterschiedlicher Fahrer")
+        stats.float()

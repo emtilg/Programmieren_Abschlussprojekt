@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:61fd0ac1685dbb1e645f596a4ba115ecef5135e1330f70bee863f7df1621081a"
+content_hash = "sha256:d860378938541c6f4885e0e62dc853398f6fe1ac8927ea116032c0cae4032cc9"
 
 [[metadata.targets]]
 requires_python = "==3.12.*"
@@ -582,6 +582,20 @@ files = [
 ]
 
 [[package]]
+name = "streamlit-float"
+version = "0.4.0"
+requires_python = ">=3.6"
+summary = "Fix Streamlit containers relative to viewport instead of page"
+groups = ["default"]
+dependencies = [
+    "streamlit>=1.45",
+]
+files = [
+    {file = "streamlit_float-0.4.0-py3-none-any.whl", hash = "sha256:3818cefe0127dd4517f39f7e9cc84acdb387e8477db3656f8e1ab8c68aa34d20"},
+    {file = "streamlit_float-0.4.0.tar.gz", hash = "sha256:ef1114d3b3b6356ae9175aaa89626bcf62bee476ec40a6e94e3a209accbdb82c"},
+]
+
+[[package]]
 name = "tenacity"
 version = "9.1.4"
 requires_python = ">=3.10"
@@ -620,7 +634,7 @@ version = "2026.2"
 requires_python = ">=2"
 summary = "Provider of IANA time zone data"
 groups = ["default"]
-marker = "sys_platform == \"win32\" or sys_platform == \"emscripten\""
+marker = "sys_platform == \"emscripten\" or sys_platform == \"win32\""
 files = [
     {file = "tzdata-2026.2-py2.py3-none-any.whl", hash = "sha256:bbe9af844f658da81a5f95019480da3a89415801f6cc966806612cc7169bffe7"},
     {file = "tzdata-2026.2.tar.gz", hash = "sha256:9173fde7d80d9018e02a662e168e5a2d04f87c41ea174b139fbef642eda62d10"},
