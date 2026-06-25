@@ -3,7 +3,6 @@ import base64
 
 import registration
 import login
-from user import User
 
 # CSS code zwischen den Balken, nur Design, kein funktionaler code
 #_________________________________________________________________________________________________
