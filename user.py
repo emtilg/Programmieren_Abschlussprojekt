@@ -32,4 +32,4 @@ class User:
         self.Nachname = Nachname
 
     def begrüßen(self):
-        st.title(f"Hallo {self.Vorname}")
+        st.title(f"Griaß di {self.Vorname}")
