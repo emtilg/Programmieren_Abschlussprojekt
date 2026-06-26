@@ -65,6 +65,9 @@ if "true_login" not in st.session_state:
     st.session_state.true_login = False
 
 # erstellt eine Sidebar mit Buttons
+sol1_s, col2_s, col3_s = st.sidebar.columns([1,3,1])
+with col2_s:
+    st.image("images/Logo-Programmieren.jpeg", width=100)
 st.sidebar.write("### Profil")
 login_button = st.sidebar.button("Login", type="primary")
 registrieren = st.sidebar.button("Registrieren", type="primary")
@@ -94,12 +97,12 @@ with main_page:
     if st.session_state.page == "main" and st.session_state.true_login:
         if "object_user" in st.session_state:
             st.session_state.object_user.begrüßen()
-        st.image("images/Göfelesee.png")
+        st.image("images/Logo-Programmieren.jpeg")
 with right_side:
     if st.session_state.page == "main" and st.session_state.true_login:
         stats = st.container()
 
         with stats:
             st.write("### Statistik")
-            st.write("Hier finden sie die Statistiken unterschiedlicher Fahrer")
+            st.write("Hier finden sie die Statistiken mit Höhenmeter, Kilometer, getrunkene Bier, etc...")
         stats.float()
