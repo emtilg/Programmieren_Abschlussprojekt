@@ -11,6 +11,7 @@
 - GPX Dateinen einlesen/ auswerten
 - Plot von Map und Anzeige von Tourdaten
 - Tour Klasse / Datei
+- Ausreden Generator
 
 
 
