@@ -5,6 +5,15 @@ import streamlit_float
 import registration
 import login
 
+from pathlib import Path
+
+import streamlit as st
+from streamlit_folium import st_folium
+
+from gpx_reader import read_gpx
+from plotting import plot_gpx
+from tour_planner import show_tour_planner
+
 # CSS code zwischen den Balken, nur Design, kein funktionaler code
 # _________________________________________________________________________________________________
 
@@ -97,7 +106,14 @@ with main_page:
     if st.session_state.page == "main" and st.session_state.true_login:
         if "object_user" in st.session_state:
             st.session_state.object_user.begrüßen()
-        st.image("images/Logo-Programmieren.jpeg")
+        #st.image("images/Logo-Programmieren.jpeg")
+
+        #Routen auswahl
+
+        show_tour_planner()
+
+
+        
 with right_side:
     if st.session_state.page == "main" and st.session_state.true_login:
         stats = st.container()
@@ -106,3 +122,5 @@ with right_side:
             st.write("### Statistik")
             st.write("Hier finden sie die Statistiken mit Höhenmeter, Kilometer, getrunkene Bier, etc...")
         stats.float()
+
+
