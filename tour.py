@@ -61,4 +61,8 @@ class Tour:
                 total_gain += difference
 
         return total_gain
+    
+    def kcal_claculator(self):
+        duration = self.data["time"].iloc[-1] - self.data["time"].iloc[0]
+        return duration
 
