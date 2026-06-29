@@ -1,22 +1,20 @@
 import folium
+from tour import Tour
 
+def plot_tour(tour: Tour):
 
-def plot_gpx(df):
-    center = [
-        df["lat"].mean(),
-        df["lon"].mean(),
-    ]
+    center = tour.get_center()
 
     m = folium.Map(
         location=center,
         zoom_start=12,
     )
 
-    coords = df[["lat", "lon"]].values.tolist()
+    coords = tour.get_coords()
 
     folium.PolyLine(
         coords,
         weight=4,
     ).add_to(m)
-
+    
     return m

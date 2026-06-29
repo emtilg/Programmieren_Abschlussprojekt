@@ -23,9 +23,3 @@ def read_gpx(file_path: Path) -> pd.DataFrame:
                 )
 
     return pd.DataFrame(rows)
-
-#kurzer Test
-
-#df = read_gpx(Path("data/gpxtracks/Alpl.gpx"))
-
-#print(df.head())

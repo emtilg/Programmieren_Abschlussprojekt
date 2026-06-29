@@ -6,13 +6,11 @@ import registration
 import login
 
 from pathlib import Path
-
-import streamlit as st
 from streamlit_folium import st_folium
-
 from gpx_reader import read_gpx
-from plotting import plot_gpx
 from tour_planner import show_tour_planner
+from plotting import plot_tour
+
 
 # CSS code zwischen den Balken, nur Design, kein funktionaler code
 # _________________________________________________________________________________________________
