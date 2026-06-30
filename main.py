@@ -5,11 +5,11 @@ import streamlit_float
 import registration
 import login
 
-from pathlib import Path
-from streamlit_folium import st_folium
-from gpx_reader import read_gpx
+#from pathlib import Path
+#from streamlit_folium import st_folium
+#from gpx_reader import read_gpx
 from tour_planner import show_tour_planner
-from plotting import plot_tour
+#from plotting import plot_tour
 
 
 # CSS code zwischen den Balken, nur Design, kein funktionaler code

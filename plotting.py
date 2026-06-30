@@ -8,6 +8,7 @@ def plot_tour(tour: Tour):
     m = folium.Map(
         location=center,
         zoom_start=12,
+        wheel_px_per_zoom_level=150
     )
 
     coords = tour.get_coords()

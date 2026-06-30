@@ -5,16 +5,20 @@ import pandas as pd
 import datetime
 from datetime import timedelta
 
-#from gpx_reader import read_gpx
-#from user import User
+from geopy.distance import geodesic
+
+# from gpx_reader import read_gpx
+# from user import User
 
 
 class Tour:
-    def __init__(self, file_path: Path):
+    def __init__(self, file_path: Path, search_point=None):
         self.file_path = file_path
         self.name = file_path.stem
-        #self.data = read_gpx(file_path)
+        # self.data = read_gpx(file_path)
         self.data = pd.read_parquet(file_path)
+        self.lat = search_point[0]
+        self.long = search_point[1]
 
     def get_center(self):
         return [
@@ -67,8 +71,8 @@ class Tour:
                 total_gain += difference
 
         return total_gain
-    
-    def kcal_claculator(self):       
+
+    def kcal_claculator(self):
         g = 9.81
         duration = st.session_state.duration.hour * 3600 + st.session_state.duration.minute * 60
         distance_m = self.get_distance() * 1000
@@ -78,13 +82,23 @@ class Tour:
         Fr_s = 0.01 * st.session_state.object_user.weight() * g * distance_m
         Fd_s = 0.5 * 1.11 * 0.6 * avg_velosity**2 * distance_m
 
-        kcal = (E_pot + Fr_s + Fd_s) / (0.23 * 4184) 
+        kcal = (E_pot + Fr_s + Fd_s) / (0.23 * 4184)
         return round(kcal)
-    
+
     def estimate_tour_time(self):
         richtwert = self.data["time"].iloc[-1] - self.data["time"].iloc[0]
+
         def duration_to_time(td: timedelta) -> datetime.time:
             base = datetime.datetime(1900, 1, 1)
             return (base + td).time()
+
         startwert = duration_to_time(richtwert)
         return startwert
+
+    def get_distance_to_location(self):
+        # geolocator = Nominatim(user_agent="tourensuche", timeout=10)
+
+        # location = geolocator.geocode(f"{st.session_state.routen_suche},Tirol")
+        distanz = geodesic((self.lat, self.long), (self.data["lat"].mean(), self.data["lon"].mean())).km
+
+        return distanz
