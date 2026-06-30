@@ -3,18 +3,14 @@
         "ID": 1,
         "Vorname": "Emmanuel",
         "Nachname": "Tilg",
-        "Passwort": "Programmieren"
+        "Passwort": "1",
+        "Gewicht": 78.0
     },
     {
         "ID": 2,
-        "Vorname": "Marc",
-        "Nachname": "Wechselberger",
-        "Passwort": "hallo"
-    },
-    {
-        "ID": 3,
-        "Vorname": "Nicolas",
-        "Nachname": "Unterweger",
-        "Passwort": "nein"
+        "Vorname": "Hans",
+        "Nachname": "Peter",
+        "Passwort": "2",
+        "Gewicht": 60.0
     }
 ]

@@ -42,7 +42,7 @@ def show_login():
             time.sleep(1.5)  # timer, der 1.5 sekunde wartet, wenn man Bestätigen drückt, dann wird umgeleitet zur main
             st.session_state.page = "main"
             st.session_state.true_login = True
-            st.session_state.object_user = User(person["ID"], person["Vorname"], person["Nachname"])
+            st.session_state.object_user = User(person["ID"], person["Vorname"], person["Nachname"], person["Gewicht"])
             st.rerun()
 
         else:

@@ -1,7 +1,9 @@
 from math import radians, sin, cos, sqrt, atan2
 from pathlib import Path
+import streamlit as st
 
 from gpx_reader import read_gpx
+#from user import User
 
 
 class Tour:
@@ -63,6 +65,14 @@ class Tour:
         return total_gain
     
     def kcal_claculator(self):
-        duration = self.data["time"].iloc[-1] - self.data["time"].iloc[0]
-        return duration
+        g = 9.81
+        duration = st.session_state.duration.hour * 3600 + st.session_state.duration.minute * 60
+        distance_m = self.get_distance() * 1000
+        avg_velosity = distance_m / duration
 
+        E_pot = st.session_state.object_user.weight() * g * self.get_elevation_gain()
+        Fr_s = 0.01 * st.session_state.object_user.weight() * g * distance_m
+        Fd_s = 0.5 * 1.11 * 0.6 * avg_velosity**2 * distance_m
+
+        kcal = (E_pot + Fr_s + Fd_s) / (0.23 * 4184) 
+        return round(kcal)

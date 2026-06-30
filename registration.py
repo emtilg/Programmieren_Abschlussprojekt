@@ -13,14 +13,15 @@ def show_registration():
     Vorname = st.text_input("Vorname*", "", key="vorname_reg")
     Nachname = st.text_input("Nachname*", "", key="nachname_reg")
     Passwort = st.text_input("Passwort*", "", type="password", key="passwort_reg")
+    Gewicht = st.number_input("Gewicht in Kg*", key="gewicht_reg")
 
     # Bestätigung sowie AGB
     AGB = st.checkbox("Ich habe die Nutzungsbedingungen sowie die AGB glesen und akzeptiere sie")
     bestätigen = st.button("Bestätigen", type="primary")
 
     # Abfragen, dass der Rahmen festgelegt wird
-    if bestätigen and AGB and len(Vorname) > 0 and len(Nachname) > 0 and len(Passwort) > 0:
-        User.add_users_to_json(Vorname, Nachname, Passwort)
+    if bestätigen and AGB and len(Vorname) > 0 and len(Nachname) > 0 and len(Passwort) > 0 and Gewicht > 0:
+        User.add_users_to_json(Vorname, Nachname, Passwort, Gewicht)
         st.success("##### Registrierung erfolgreich")
 
         time.sleep(2)

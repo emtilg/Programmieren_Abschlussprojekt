@@ -105,4 +105,5 @@ def show_tour_planner():
     with col4:
         st.metric("Höhenmeter", f"{selected_tour.get_elevation_gain():.0f} m")
 
-    st.write(selected_tour.kcal_claculator())
+    st.session_state.duration = st.time_input("Dauer der Tour auswählen") # gewollt dauer der Tour auswählen
+    st.write(selected_tour.kcal_claculator(),"kcal werden für die Tour ungefähr benötigt")
