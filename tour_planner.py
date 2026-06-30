@@ -5,6 +5,7 @@ from streamlit_folium import st_folium
 
 from plotting import plot_tour
 from tour import Tour
+from gpx_reader import read_gpx
 
 
 def show_tour_planner():
@@ -12,6 +13,9 @@ def show_tour_planner():
 
     gpx_folder = Path("data/gpxtracks")
     gpx_folder.mkdir(parents=True, exist_ok=True)
+
+    parquet_folder = Path("parquet_data")
+    parquet_folder.mkdir(parents=True, exist_ok=True)
 
     uploaded_files = st.file_uploader(
         "Weitere GPX-Dateien hochladen",
@@ -24,16 +28,22 @@ def show_tour_planner():
             save_path = gpx_folder / uploaded_file.name
             with open(save_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
+            
+            df = read_gpx(save_path)
 
-    gpx_files = sorted(gpx_folder.glob("*.gpx"))
+            parquet_path = parquet_folder / f"{save_path.stem}.parquet"
+            df.to_parquet(parquet_path)
 
-    if not gpx_files:
+    parquet_files = sorted(parquet_folder.glob("*.parquet"))
+    #gpx_files = sorted(gpx_folder.glob("*.gpx"))
+
+    if not parquet_files:
         st.warning("Keine GPX-Dateien gefunden.")
         return
 
     #HIER WIRD INSTANZIERT
     
-    tours = [Tour(file_path) for file_path in gpx_files]
+    tours = [Tour(file_path) for file_path in parquet_files]
 
     st.markdown("### Filter")
 
@@ -105,5 +115,5 @@ def show_tour_planner():
     with col4:
         st.metric("Höhenmeter", f"{selected_tour.get_elevation_gain():.0f} m")
 
-    st.session_state.duration = st.time_input("Dauer der Tour auswählen") # gewollt dauer der Tour auswählen
+    st.session_state.duration = st.time_input("Dauer der Tour auswählen", selected_tour.estimate_tour_time()) # gewollt dauer der Tour auswählen
     st.write(selected_tour.kcal_claculator(),"kcal werden für die Tour ungefähr benötigt")

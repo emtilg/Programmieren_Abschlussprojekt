@@ -18,7 +18,7 @@ def read_gpx(file_path: Path) -> pd.DataFrame:
                         "lat": point.latitude,
                         "lon": point.longitude,
                         "elevation": point.elevation,
-                        "time": point.time,
+                        "time": pd.to_datetime(point.time).tz_convert(None),
                     }
                 )
 

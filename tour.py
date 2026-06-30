@@ -1,8 +1,11 @@
 from math import radians, sin, cos, sqrt, atan2
 from pathlib import Path
 import streamlit as st
+import pandas as pd
+import datetime
+from datetime import timedelta
 
-from gpx_reader import read_gpx
+#from gpx_reader import read_gpx
 #from user import User
 
 
@@ -10,7 +13,8 @@ class Tour:
     def __init__(self, file_path: Path):
         self.file_path = file_path
         self.name = file_path.stem
-        self.data = read_gpx(file_path)
+        #self.data = read_gpx(file_path)
+        self.data = pd.read_parquet(file_path)
 
     def get_center(self):
         return [
@@ -64,7 +68,7 @@ class Tour:
 
         return total_gain
     
-    def kcal_claculator(self):
+    def kcal_claculator(self):       
         g = 9.81
         duration = st.session_state.duration.hour * 3600 + st.session_state.duration.minute * 60
         distance_m = self.get_distance() * 1000
@@ -76,3 +80,11 @@ class Tour:
 
         kcal = (E_pot + Fr_s + Fd_s) / (0.23 * 4184) 
         return round(kcal)
+    
+    def estimate_tour_time(self):
+        richtwert = self.data["time"].iloc[-1] - self.data["time"].iloc[0]
+        def duration_to_time(td: timedelta) -> datetime.time:
+            base = datetime.datetime(1900, 1, 1)
+            return (base + td).time()
+        startwert = duration_to_time(richtwert)
+        return startwert
