@@ -19,7 +19,11 @@ def show_tour_planner():
 
     if "routen_umkreis" not in st.session_state:
         st.session_state.routen_umkreis = 40
-    
+
+    if "uploaded_files" not in st.session_state:
+        st.session_state.uploaded_files = ""
+
+
     st.subheader("🚴 Touren")
 
     gpx_folder = Path("data/gpxtracks")
@@ -27,15 +31,17 @@ def show_tour_planner():
 
     parquet_folder = Path("parquet_data")
     parquet_folder.mkdir(parents=True, exist_ok=True)
-
-    uploaded_files = st.file_uploader(
+    '''
+    st.session_state.uploaded_files = st.file_uploader(
         "Weitere GPX-Dateien hochladen",
         type="gpx",
         accept_multiple_files=True,
     )
-
-    if uploaded_files:
-        for uploaded_file in uploaded_files:
+    '''
+    files = st.session_state.get("uploaded_files")
+    #if st.session_state.uploaded_files:
+    if files:
+        for uploaded_file in st.session_state.uploaded_files:
             save_path = gpx_folder / uploaded_file.name
             with open(save_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
@@ -44,6 +50,10 @@ def show_tour_planner():
 
             parquet_path = parquet_folder / f"{save_path.stem}.parquet"
             df.to_parquet(parquet_path)
+
+        st.session_state.uploader_key += 1
+        st.session_state.uploaded_files = []
+        st.rerun()
 
     parquet_files = sorted(parquet_folder.glob("*.parquet"))
     #gpx_files = sorted(gpx_folder.glob("*.gpx"))
