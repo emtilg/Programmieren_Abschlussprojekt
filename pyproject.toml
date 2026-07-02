@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "Marc", email = "wm2041@mci4me.at"},
 ]
-dependencies = ["streamlit>=1.58.0", "streamlit-float>=0.4.0", "gpxpy>=1.6.2", "folium>=0.20.0", "streamlit-folium>=0.27.2", "pandas>=3.0.4", "geopy==2.4.1", "requests==2.31.0", "urllib3==2.0.7", "certifi>=2026.6.17"]
+dependencies = ["streamlit>=1.58.0", "streamlit-float>=0.4.0", "gpxpy>=1.6.2", "folium>=0.20.0", "streamlit-folium>=0.27.2", "pandas>=3.0.4", "geopy==2.4.1", "requests==2.31.0", "urllib3==2.0.7", "certifi>=2026.6.17", "streamlit-calendar>=1.4.0"]
 requires-python = "==3.12.*"
 readme = "README.md"
 license = {text = "MIT"}

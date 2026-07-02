@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:184ba4b7703f4199d83dabf854534c318bf5385a53ae3fb4d031bfb01174fac8"
+content_hash = "sha256:c5e90addef51157891a33ec77462039377d441e886af046614a1634c7a5b4d7a"
 
 [[metadata.targets]]
 requires_python = "==3.12.*"
@@ -648,6 +648,20 @@ dependencies = [
 files = [
     {file = "streamlit-1.58.0-py3-none-any.whl", hash = "sha256:4ca8a7afc5bd16a5f176ccf4be1e34e8121cad0240becd127fb58a103ea3178d"},
     {file = "streamlit-1.58.0.tar.gz", hash = "sha256:78a22e7085b053af7ce544442bf4b670771e68c509ba1bdaa056ba0708f49c3d"},
+]
+
+[[package]]
+name = "streamlit-calendar"
+version = "1.4.0"
+requires_python = "<4.0,>=3.9"
+summary = "📆 A Streamlit component to show callendar using FullCalendar (https://fullcalendar.io)"
+groups = ["default"]
+dependencies = [
+    "streamlit<2.0.0,>=1.12.0",
+]
+files = [
+    {file = "streamlit_calendar-1.4.0-py3-none-any.whl", hash = "sha256:bba0fbd47c0910b8eb15fc3689d3f66a097bf26818da36a3c1737e00fe995966"},
+    {file = "streamlit_calendar-1.4.0.tar.gz", hash = "sha256:47bd4fe839fdcbc7f334cb3aec0b83556558357562bb58c5a9fdfe11cd4e7b80"},
 ]
 
 [[package]]

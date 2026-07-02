@@ -1,15 +1,14 @@
 import streamlit as st
 import base64
-import streamlit_float
+import streamlit_float  # noqa: F401 # wird fälschlicherweiße als "unused" markiert, wird allerdings in line 206 gebraucht
 
 import registration
 import login
 
-# from pathlib import Path
-# from streamlit_folium import st_folium
-# from gpx_reader import read_gpx
 from tour_planner import show_tour_planner
-# from plotting import plot_tour
+from kalendar import show_calendar
+from finished_tours import show_finished_tours
+
 
 
 # CSS code zwischen den Balken, nur Design, kein funktionaler code
@@ -171,12 +170,16 @@ if st.session_state.page == "main" and not st.session_state.true_login:
 with main_page:
     if st.session_state.page == "main" and st.session_state.true_login:
         if "object_user" in st.session_state:
-            st.session_state.object_user.begrüßen()
-        # st.image("images/Logo-Programmieren.jpeg")
+                st.session_state.object_user.begrüßen()
 
-        # Routen auswahl
-
-        show_tour_planner()
+        tab1, tab2, tab3 = st.tabs(["Tour Planen","Kalender","Gefahrene Touren"])
+                
+        with tab1:    
+            show_tour_planner()
+        with tab2:
+            show_calendar()
+        with tab3:
+            show_finished_tours()
 
 
 with right_side:

@@ -7,15 +7,11 @@ from datetime import timedelta
 
 from geopy.distance import geodesic
 
-# from gpx_reader import read_gpx
-# from user import User
-
 
 class Tour:
     def __init__(self, file_path: Path, search_point=None):
         self.file_path = file_path
         self.name = file_path.stem
-        # self.data = read_gpx(file_path)
         self.data = pd.read_parquet(file_path)
         self.lat = search_point[0]
         self.long = search_point[1]
@@ -96,9 +92,5 @@ class Tour:
         return startwert
 
     def get_distance_to_location(self):
-        # geolocator = Nominatim(user_agent="tourensuche", timeout=10)
-
-        # location = geolocator.geocode(f"{st.session_state.routen_suche},Tirol")
         distanz = geodesic((self.lat, self.long), (self.data["lat"].mean(), self.data["lon"].mean())).km
-
         return distanz
